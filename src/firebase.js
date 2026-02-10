@@ -1,39 +1,23 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAKqdHdrtcBEeSQ4uCjNS9Q4tzykUGcPOQ",
-//   authDomain: "auth-demo-e80b3.firebaseapp.com",
-//   projectId: "auth-demo-e80b3",
-//   storageBucket: "auth-demo-e80b3.firebasestorage.app",
-//   messagingSenderId: "153306608019",
-//   appId: "1:153306608019:web:c37bfeb7e0d8f171867866"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-console.log("firebase.js is running!")
 // src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// ← Replace with YOUR real Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyAKqdHdrtcBEeSQ4uCjNS9Q4tzykUGcPOQ",
-  authDomain: "auth-demo-e80b3.firebaseapp.com",
-  projectId: "auth-demo-e80b3",
-  storageBucket: "auth-demo-e80b3.firebasestorage.app",
-  messagingSenderId: "153306608019",
-  appId: "1:153306608019:web:c37bfeb7e0d8f171867866"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log("Firebase app initialized:", app);  // should print an object, not undefined
+// Debug log (remove in prod)
+console.log("Firebase config loaded:", {
+  projectId: firebaseConfig.projectId,
+  hasApiKey: !!firebaseConfig.apiKey
+});
 
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db   = getFirestore(app);
+export const db = getFirestore(app);
