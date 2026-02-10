@@ -12,12 +12,11 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-console.log("ENV VARS IN PRODUCTION:", {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY ? "present" : "MISSING",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "MISSING",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "MISSING",
-  fullConfig: firebaseConfig  // safe to log — public values
-});
+// Debug logs — keep these for now
+console.log("MODE:", import.meta.env.MODE);                     // "development" or "production"
+console.log("Is DEV?", import.meta.env.DEV);                    // true/false
+console.log("Loaded Firebase config:", firebaseConfig);        // should show real values in dev
+console.log("API Key present?", !!import.meta.env.VITE_FIREBASE_API_KEY);
 // Debug log (remove in prod)
 console.log("Firebase config loaded:", {
   projectId: firebaseConfig.projectId,
